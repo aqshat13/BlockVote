@@ -1,7 +1,22 @@
 .card-body{
     align-items: center !important;
+     
 
-}
+    }
+.card{
+    display: flex;
+    justify-content: space-evenly;
+    transition: all 0.3s ease; 
+    margin-bottom: 30px;
+    color: white;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+
+}    
+.card:hover{
+        transform: translateY(-0.25rem);
+        box-shadow: 0 1rem 2rem rgba(0, 0,0, 0);
+    }
 button{
     background-color:rgb(57, 158, 224);
     border:none;

@@ -63,12 +63,11 @@ componentDidUpdate(prevProps){
           <p className="card-text d-flex justify-content-center">
               {this.props.description}
          </p>
-        {/* <a href="#" className="btn btn-primary d-flex justify-content-center">
-         Vote
-       </a> */}
-         <button type="button" onClick={this.addVote} disabled={this.state.voteState} >Vote</button>
-         <ul class="list-group" style={{display:this.state.displayVote}}>
-         <li class="list-group-item">Total Vote   {this.state.voteTotal}</li>
+     
+         <button type="button" style={{marginBottom:20}} onClick={this.addVote} disabled={this.state.voteState} >Vote</button>
+         
+         <ul className="list-group" style={{display:this.state.displayVote}}>
+         <li className="list-group-item" style={{fontSize:12}}>Total Vote {this.state.voteTotal}</li>
          </ul>
       </div> 
      </div>

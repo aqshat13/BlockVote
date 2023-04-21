@@ -1,61 +1,57 @@
-import 'regenerator-runtime/runtime'
-import React ,{useState} from 'react'
-import { login, logout } from './utils'
-import './global.css'
-import Container from 'react-bootstrap';
-import Subjects from '../src/component/Subjects.js'
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import {Row,Col} from 'react-bootstrap'
-import Candidate  from '../src/component/Candidate';
-import getConfig from './config'
-import Bjp from './assets/bjp.png';
-import Congress from './assets/congress.png'
-
-const { networkId } = getConfig(process.env.NODE_ENV || 'development')
-
-
+import {BrowserRouter as Router , Routes,Route, Link} from 'react-router-dom';
+import React  from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'
+import Voting from './Voting';
+import Procedure from './Procedure';
+import Banner from './Banner'
 
 export default function App() {
-
- const[buttonState,ChangeButtonState]=useState(false);
-
- const modButton=()=>{
-   ChangeButtonState(
-    !buttonState
-   )
- }
-
-let bjpdescription="Current ruling party";
-let CongressDescription="Ruled for many years"
-
-
  return(
- <React.Fragment>
-  <div>
-  <Navbar className="Navbar-Background"   bg="dark" collapseOnSelect expand="lg" variant="dark">
-   <Navbar.Brand href="#home">BlockVote</Navbar.Brand>
-    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-    <Navbar.Collapse id="responsive-navbar-nav">
-      <Nav className="mr-auto">
-       </Nav>
-       <Nav>
-        <Nav.Link onClick={(window.accountId==='')?login:logout} eventKey={2}>
-          {(window.accountId==='')?"Login":window.accountId}
-        </Nav.Link>
-      </Nav>
-    </Navbar.Collapse>
-   </Navbar>
-  </div> 
-
-  <div className="container">
-    <Row>
-     <div className="col-sm d-flex justify-content-center">  <Col> <Candidate modButton={modButton} buttonState={buttonState} picture={Bjp} description={bjpdescription} title={"BJP"}/></Col></div>
-     <div className="col-sm d-flex justify-content-center">  <Col><Subjects/></Col></div>
-     <div className="col-sm d-flex justify-content-center">  <Col> <Candidate modButton={modButton} buttonState={buttonState} picture={Congress} title={"CONGRESS"} description={CongressDescription}/></Col></div>
-    </Row>  
+  <>
+  <Router>
+   <nav className="navbar navbar-expand-lg bg-body-tertiary">
+   <div class="container-fluid">
+   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   <div className="collapse navbar-collapse" id="navbarNav">
+    <ul className="navbar-nav ">
+      <li className="nav-item">
+      <Link to='/'>
+        Home
+      <img src='' alt=''/>
+      </Link>
+      </li>
+      <li className="nav-item">
+      <Link to='/procedure'>
+        Procedure 
+      </Link>
+      </li>
+      <li className="nav-item">
+        <Link to='/voting'>
+          Voting Page
+        </Link>
+      </li> 
+    </ul>
+      </div>
+     </div>
+   </nav>
+    <Routes>
+      <Route path='./' />
+      <Route path='/procedure' element={<Procedure/>}/>
+      <Route path='/voting' element={<Voting/>}/>
+     </Routes>
+  </Router>
+{/* <div className="banner mt-5">
+  <div className="head">
+   <h3> This is a BlockChain based Voting System!!</h3>
   </div>
+  <div>
 
-</React.Fragment>
+  </div>
+  </div> */}
+  <Banner/>
+ </>
 )
 }
